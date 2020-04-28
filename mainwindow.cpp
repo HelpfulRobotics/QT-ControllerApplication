@@ -20,7 +20,11 @@ MainWindow::~MainWindow()
 //Button Slots
 void MainWindow::on_Button_CommandSend_clicked()
 {
-    myTCP.sendMessage(ui->textIntput_Command->text());
+    QString input = ui->textIntput_Command->text();
+    myTCP.sendMessage(input);
+    input = "Controller: "+input;
+    ui->commandTable->append(input);
+    ui->textIntput_Command->clear();
 }
 
 void MainWindow::on_Button_SerialConnection_clicked()
@@ -56,4 +60,13 @@ void MainWindow::on_Button_Move_Reverse_2_clicked()
 void MainWindow::on_Button_Move_Right_2_clicked()
 {
 
+}
+
+void MainWindow::on_textIntput_Command_returnPressed()
+{
+    QString input = ui->textIntput_Command->text();
+    myTCP.sendMessage(input);
+    input = "Controller: "+input;
+    ui->commandTable->append(input);
+    ui->textIntput_Command->clear();
 }

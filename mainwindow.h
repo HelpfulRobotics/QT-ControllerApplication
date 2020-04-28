@@ -35,6 +35,8 @@ private slots:
 
     void on_Button_Move_Right_2_clicked();
 
+    void on_textIntput_Command_returnPressed();
+
 private:
     Ui::MainWindow *ui;
     myTCPServer myTCP;

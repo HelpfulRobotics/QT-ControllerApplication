@@ -1,5 +1,6 @@
 #include "mytcpserver.h"
-#include "mytcpserver.h"
+#include "mainwindow.h"
+
 
 
 myTCPServer::myTCPServer(QObject *parent) : QObject(parent)
