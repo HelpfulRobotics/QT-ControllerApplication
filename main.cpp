@@ -8,8 +8,8 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
+     myTCPServer myTCP;
 
-   // myTCPServer myTCP;
     //myTCP.sendMessage("this is quinton");
     return a.exec();
 }

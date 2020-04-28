@@ -21,8 +21,11 @@ myTCPServer::myTCPServer(QObject *parent) : QObject(parent)
 
 void myTCPServer::newConnection()
 {
-    QTcpSocket *robotSocket=server->nextPendingConnection();
+    robotSocket=server->nextPendingConnection();
     robotSocket->write("Welcome Client\r\n");
+    robotSocket->flush();
+    robotSocket->waitForBytesWritten(3000);
+    robotSocket->write("This is quinton\r\n");
     robotSocket->flush();
     robotSocket->waitForBytesWritten(3000);
     //socket->close();
@@ -30,10 +33,11 @@ void myTCPServer::newConnection()
 }
 void myTCPServer::sendMessage(QString message)
 {
-   //robotSocket->write(message);
+    //robotSocket->write(message);
     QByteArray ba = message.toLocal8Bit();
       const char *send = ba.data();
       robotSocket->write(send);
+      robotSocket->flush();
 }
 
 void myTCPServer::closeConnection()

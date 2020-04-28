@@ -1,11 +1,14 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "mytcpserver.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    // myTCPServer myTCP;
+
 }
 
 MainWindow::~MainWindow()
@@ -17,7 +20,7 @@ MainWindow::~MainWindow()
 //Button Slots
 void MainWindow::on_Button_CommandSend_clicked()
 {
-
+    myTCP.sendMessage(ui->textIntput_Command->text());
 }
 
 void MainWindow::on_Button_SerialConnection_clicked()
