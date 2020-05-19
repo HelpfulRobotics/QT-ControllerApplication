@@ -1,6 +1,7 @@
 QT       += core gui
 
 QT += network
+QT += gamepad
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -16,14 +17,53 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # In order to do so, uncomment the following line.
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
+win32 {
 
+## Link to Xinput
+message(Using Win32)
+
+contains(QT_ARCH, i386) {
+ BIT_BUILD = x86
+}else{
+ BIT_BUILD = x64
+}
+
+message(Bit build: $$BIT_BUILD)
+
+# Find the lib path
+XinputPath = $$(WindowsSdkDir)\\Lib\\$$(WindowsSdkLibVersion)\\um\\$$BIT_BUILD
+exists($$XinputPath) {
+    message(Found that Lib path: $$XinputPath)
+    LIBS += -L$$XinputPath \
+            -lxinput \
+            -lXinput9_1_0
+    message(THE LIBS ARE: $$LIBS)
+}else{
+    message(Missing XinputPath: $$XinputPath)
+}
+
+
+XinputIncludePath = $$(WindowsSdkDir)\\Include\\$$(WindowsSDKLibVersion)\\um
+# Find the include path
+exists($$XinputIncludePath) {
+    message(Found Xinput Include: $$XinputIncludePath)
+    INCLUDEPATH += $$XinputIncludePath
+}else{
+    message(Missing XInputIncludePath: $$XinputIncludePath)
+}
+
+}
 SOURCES += \
+    gamepadserver.cpp \
+    gamepadstate.cpp \
     main.cpp \
     mainwindow.cpp \
     mytcpserver.cpp \
     serialconnection.cpp
 
 HEADERS += \
+    gamepadserver.h \
+    gamepadstate.h \
     mainwindow.h \
     mytcpserver.h \
     serialconnection.h

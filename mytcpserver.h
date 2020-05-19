@@ -6,12 +6,14 @@
 #include <QDebug>
 #include <QTcpServer>
 #include <QTcpSocket>
+#include <ui_mainwindow.h>
 
 class myTCPServer : public QObject
 {
     Q_OBJECT
 public:
-    explicit myTCPServer(QObject *parent = nullptr);
+    explicit myTCPServer();
+    void getUI(Ui::MainWindow* ui);
 
     void closeConnection();
 signals:
@@ -21,9 +23,11 @@ public slots:
     void newConnection();
     void sendMessage(QString message);
 
+
 private:
     QTcpServer *server;
-    QTcpSocket *robotSocket;
+    QTcpSocket *robotSocket=nullptr;
+    Ui::MainWindow* uiPTR;
 };
 
 #endif // MYTCPSERVER_H

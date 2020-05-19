@@ -112,7 +112,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>30</y>
+      <y>10</y>
       <width>160</width>
       <height>104</height>
      </rect>
@@ -171,8 +171,8 @@
    <widget class="QTextBrowser" name="commandTable">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>160</y>
+      <x>20</x>
+      <y>120</y>
       <width>371</width>
       <height>371</height>
      </rect>
@@ -181,8 +181,8 @@
    <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>530</y>
+      <x>20</x>
+      <y>500</y>
       <width>371</width>
       <height>31</height>
      </rect>
@@ -321,7 +321,7 @@ width:24;</string>
         </widget>
        </item>
        <item row="4" column="1">
-        <widget class="QLabel" name="label_14">
+        <widget class="QLabel" name="Network_status">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -442,7 +442,7 @@ width:24;</string>
     <property name="geometry">
      <rect>
       <x>200</x>
-      <y>30</y>
+      <y>10</y>
       <width>160</width>
       <height>104</height>
      </rect>
@@ -628,6 +628,19 @@ width:24;</string>
      <string>Camera Controll</string>
     </property>
    </widget>
+   <widget class="QCheckBox" name="checkBox_AutoMessageShow">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>540</y>
+      <width>121</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Show Auto Messages</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -635,7 +648,7 @@ width:24;</string>
      <x>0</x>
      <y>0</y>
      <width>1057</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
