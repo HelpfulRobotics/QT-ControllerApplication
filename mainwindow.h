@@ -18,6 +18,7 @@ public:
     ~MainWindow();
  Ui::MainWindow *ui;
 
+
  float remap(float value, float from1, float to1, float from2, float to2);
 protected slots:
 

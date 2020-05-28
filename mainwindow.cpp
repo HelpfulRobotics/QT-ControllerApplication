@@ -20,6 +20,8 @@ MainWindow::MainWindow(QWidget *parent)
             this, SLOT(catchGamepadState(GamepadState, int)));
 
     this->setWindowTitle(tr("Gamepad Server v0.1"));
+    ui->trottleM1->setValue(10);
+    ui->trottleM2->setValue(15);
 
 }
 
@@ -33,20 +35,25 @@ float MainWindow::remap(float value, float from1,float to1, float from2, float t
 }
 void MainWindow::sendController(const GamepadState & gps)
 {
-    int m1=remap(gps.m_lTrigger,0,255,0,100);
-    int m2=remap(gps.m_rTrigger,0,255,0,100);
+    int m1=(int)remap(gps.m_lTrigger,0,255,0,100);
+    int m2=(int)remap(gps.m_rTrigger,0,255,0,100);
+
     QString message =" "+QString::number(m1)+" "+QString::number(m2);
     qDebug() << message;
     myTCP->sendMessage(message);
+    ui->trottleM1->setValue(m1);
+    ui->trottleM2->setValue(m2);
+
+
 }
 void MainWindow::catchGamepadState(const GamepadState & gps, const int & playerId) {
-   // sendController(gps);
-    int m1=remap(gps.m_lTrigger,0,255,0,100);
-    int m2=remap(gps.m_rTrigger,0,255,0,100);
-    QString message =" "+QString::number(m1)+" "+QString::number(m2);
-    qDebug() << message;
-    myTCP->sendMessage(message);
-    //myTCP->sendMessage(message);
+    sendController(gps);
+    ui->Controller_status->setStyleSheet( "border-radius: 10px;"
+                                           " background: green;"
+                                             "color: green;"
+                                            "height:24;"
+                                            "width:24;"
+                                          );
 
     qDebug() << "Player " << playerId << ": ";
 

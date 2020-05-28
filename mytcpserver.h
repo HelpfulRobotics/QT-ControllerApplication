@@ -28,6 +28,8 @@ private:
     QTcpServer *server;
     QTcpSocket *robotSocket=nullptr;
     Ui::MainWindow* uiPTR;
+    bool connectionFlag=false;
+    void parseReceivedMessage(QString message);
 };
 
 #endif // MYTCPSERVER_H
