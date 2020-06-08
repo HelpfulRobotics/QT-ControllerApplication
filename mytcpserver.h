@@ -24,6 +24,9 @@ public slots:
     void sendMessage(QString message);
 
 
+private slots:
+    void on_curveConstant_returnPressed();
+
 private:
     QTcpServer *server;
     QTcpSocket *robotSocket=nullptr;

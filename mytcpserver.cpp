@@ -66,8 +66,8 @@ void myTCPServer::sendMessage(QString message)
             if(receivedMessage!=nullptr)
             {
             parseReceivedMessage(receivedMessage);
-            receivedMessage ="Knight Guard: "+receivedMessage;
-            uiPTR->commandTable->append(receivedMessage);
+            //receivedMessage ="Knight Guard: "+receivedMessage;
+            //uiPTR->commandTable->append(receivedMessage);
             }
 
 
@@ -107,17 +107,44 @@ void myTCPServer::getUI(Ui::MainWindow *ui)
 
 void myTCPServer:: parseReceivedMessage(QString message)
 {
-    /*
+
     if(message.startsWith("prox-"))
     {
-        for (int i=0;i<message.count();i++)
-           message[i]=message[i].split(",").first(); // replacing whole row with only first value
-        uiPTR->proxBar_1->setValue()
-
+        QStringList List;
+        List = message.split(",");
+        if(List.length()==11)
+        {
+        uiPTR->proxBar_1->setValue(List[1].toInt());
+        uiPTR->proxBar_2->setValue(List[2].toInt());
+        uiPTR->proxBar_3->setValue(List[3].toInt());
+        uiPTR->proxBar_4->setValue(List[4].toInt());
+        uiPTR->proxBar_5->setValue(List[5].toInt());
+        uiPTR->proxBar_6->setValue(List[6].toInt());
+        uiPTR->proxBar_7->setValue(List[7].toInt());
+        uiPTR->proxBar_8->setValue(List[8].toInt());
+        uiPTR->proxBar_9->setValue(List[9].toInt());
+        uiPTR->proxBar_10->setValue(List[10].toInt());
+        }
+        uiPTR->statusLight_ObstacleAvoid->setStyleSheet( "border-radius: 10px;"
+                                               " background: green;"
+                                                 "color: green;"
+                                                "height:24;"
+                                                "width:24;"
+                                              );
+        if(uiPTR->checkBox_AutoMessageShow->isChecked()) // if auto message show send message to terminal
+        {
+            message ="Knight Guard: "+message;
+            uiPTR->commandTable->append(message);
+        }
     }
-    */
+
 
 
 
 }
 
+
+void myTCPServer::on_curveConstant_returnPressed()
+{
+
+}
